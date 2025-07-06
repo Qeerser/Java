@@ -1,0 +1,26 @@
+package Ztest;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+
+public class aas {
+
+    public static void main(String[] args) {
+        String content = "Hello, World!";
+        String filePath = ClassLoader.getSystemResource("output.txt").toString();
+        ClassLoader.
+        try {
+            // Create a Path object for the file
+            Path path = Path.of(filePath);
+
+            // Write the content to the file
+            Files.writeString(path, content, StandardOpenOption.CREATE);
+
+            System.out.println("File written successfully!");
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
+        }
+    }
+}

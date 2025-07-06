@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;submitBtn&apos; in &apos;pane.InputPane.InputPane()&apos; to &apos;smButton&apos;&#x0D;&#x0A;- Original project: &apos;2110215_Lab5_2022_2_6531303021_Kanpasit&apos;&#x0D;&#x0A;- Original element: &apos;pane.InputPane.InputPane().submitBtn&apos;&#x0D;&#x0A;- Renamed element: &apos;submitBtn&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;submitBtn&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;pane{InputPane.java[InputPane~InputPane@submitBtn!670!709!677!685!QButton;!0!false" name="smButton" references="true" stamp="1681315893787" version="1.0"/>
+</session>

@@ -1,0 +1,32 @@
+package Ztest;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+public class aas {
+
+    public static void main(String[] args) {
+        String filePath = "/res/data.txt";
+
+        try {
+            // Get the input stream for the file
+            InputStream inputStream = ResourceFileReader.class.getResourceAsStream(filePath);
+
+            // Create a BufferedReader to read the file
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+            // Read the file line by line
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            // Close the reader
+            reader.close();
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }
+    }
+}

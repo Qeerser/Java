@@ -1,0 +1,70 @@
+package logic;
+
+import java.util.ArrayList;
+
+public class Market {
+
+	// fields
+	ArrayList<Item> allItems;
+
+	// constructors
+	public Market() {
+		//FILL CODE
+		this.allItems = new ArrayList<Item>();
+	}
+
+	public Market(ArrayList<Item> items) {
+		//FILL CODE
+		this.allItems = new ArrayList<Item>();
+		this.addAllItems(items);
+	}
+
+	// methods
+	public String toString() {
+		String out = "\n";
+		for (int i = 0; i < allItems.size(); i++) {
+			out += i + 1;
+			out += ". ";
+			out += allItems.get(i).toString();
+			out += "\n";
+		}
+		return out;
+	}
+
+	public void addAllItems(ArrayList<Item> items)  {
+		//FILL CODE
+		if(items == null) {System.out.println("Cannot find file!");
+		return;}
+		
+		ArrayList<Item> c = new ArrayList<Item>();
+		ArrayList<String> d = new ArrayList<String>();
+		for (Item y : getAllItems()) {
+			d.add(y.getItemName());
+		}
+		for (Item z : items) {
+			if (d.contains(z.getItemName())) 
+				System.out.println("\"" +z.getItemName()+ "\" is duplicated, Item will not be added.");
+			else { c.add(z);
+			d.add(z.getItemName());
+			System.out.println("\"" +z.getItemName() + " $" +z.getPrice() + "\" Added to the market.");
+			}
+//			for (Item y : getAllItems()) {
+//			for (Item z : items) {
+//				if (y.getItemName() == z.getItemName()) ;
+//				else { c.add(z);
+//				d.add(z.getItemName());
+//				}
+//			}
+		}
+		allItems.addAll(c);
+			
+		
+	}
+
+	//getter setters 
+	//FILL CODE
+	public ArrayList<Item> getAllItems() {
+		return this.allItems;
+	}
+
+}

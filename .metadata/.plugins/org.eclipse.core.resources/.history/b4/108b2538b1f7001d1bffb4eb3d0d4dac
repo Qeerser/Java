@@ -1,0 +1,16 @@
+package Game.logic;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+import Game.Scene.Stages;
+
+public class SaveData implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4548454821103404458L;
+	public static ArrayList<Stages> stages;
+	public static ArrayList<BagItem> allItem;
+}

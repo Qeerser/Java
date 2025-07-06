@@ -1,0 +1,86 @@
+1684169251741	Encapsulate field 'number'
+1684169765871	Encapsulate field 'primaryStage'
+1684170242934	Rename type 'Stage'
+1684173157369	Encapsulate field 'R'
+1684173612593	Encapsulate field 'R'
+1684214895278	Encapsulate field 'Enemys'
+1684216731339	Encapsulate field 'MaxHp'
+1684225032676	Encapsulate field 'Type'
+1684225036595	Encapsulate field 'amount'
+1684225221293	Encapsulate field 'item'
+1684225310605	Encapsulate field 'items'
+1684227962537	Encapsulate field 'kill'
+1684230629918	Encapsulate field 'player'
+1684230723791	Encapsulate field 'player'
+1684231875711	Encapsulate field 'game'
+1684232242508	Encapsulate field 'allItem'
+1684232827089	Rename field 'item'
+1684250362828	Encapsulate field 'sprite'
+1684301958509	Move member 'player'
+1684302015860	Encapsulate field 'user'
+1684302073644	Encapsulate field 'game'
+1684309690939	Encapsulate field 'icon'
+1684309787202	Encapsulate field 'icon'
+1684310492474	Change method 'getIcon'
+1684310547360	Encapsulate field 'icon'
+1684310980040	Encapsulate field 'gameUtil'
+1684312570692	Encapsulate field 'itemSlot'
+1684315219659	Copy compilation unit
+1684315846958	Rename local variable 'player'
+1684316043057	Rename local variable 'player'
+1684317024033	Encapsulate field 'allItem'
+1684317061057	Encapsulate field 'itemSlot'
+1684322191177	Rename type 'Stages'
+1684322268102	Encapsulate field 'isClear'
+1684322273086	Encapsulate field 'map'
+1684322378384	Encapsulate field 'level'
+1684322464620	Encapsulate field 'stages'
+1684326922897	Encapsulate field 'coin'
+1684329830470	Encapsulate field 'itemSlot2'
+1684333635596	Encapsulate field 'mineral'
+1684399430572	Delete element
+1684399775569	Rename resource 'Woodpickaxe.png'
+1684401835350	Encapsulate field 'id'
+1684401914449	Encapsulate field 'id'
+1684403267487	Rename package 'Scene'
+1684403283734	Move compilation unit
+1684403321534	Move compilation unit
+1684403392241	Rename package 'main'
+1684403415181	Move compilation unit
+1684403424947	Move compilation unit
+1684403434216	Move compilation unit
+1684403481800	Move compilation unit
+1684403496489	Move compilation unit
+1684403504889	Move compilation unit
+1684403519105	Move compilation unit
+1684403523898	Move compilation unit
+1684403546613	Move compilation units
+1684403557644	Move compilation unit
+1684403568100	Move compilation unit
+1684403578813	Move compilation unit
+1684403614379	Move compilation unit
+1684403676743	Move compilation unit
+1684403679855	Delete element
+1684403753550	Move compilation unit
+1684403789930	Move compilation units
+1684403826614	Rename package 'zoi'
+1684404378370	Rename method 'enchantScene'
+1684404387875	Rename method 'bagScene'
+1684404665490	Rename method 'homeScene'
+1684405737491	Rename local variable 'layout'
+1684416944864	Change method 'newText'
+1684473716573	Encapsulate field 'cost'
+1684477329958	Encapsulate field 'cost'
+1684493503895	Delete element
+1684493520382	Rename resource 'WoodPickaxe .png'
+1684512237068	Rename field 'randomRate'
+1684513621444	Rename field 'number'
+1684567040522	Delete elements
+1684567082927	Rename resource 'Wood Picaxe.png'
+1684573197424	Rename resource 'VCR_OSD_MONO_1.001.ttf'
+1684576839980	Copy file
+1684576844162	Delete element
+1684576855309	Copy file
+1684597925149	Rename resource '422280-digital-art-pixel-art-pixelated-pixels-llamas-mountains.png'
+1684599852339	Copy file
+1684599864410	Delete element

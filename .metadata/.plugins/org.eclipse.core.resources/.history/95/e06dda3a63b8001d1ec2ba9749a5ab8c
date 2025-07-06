@@ -1,0 +1,113 @@
+package logic.card;
+
+import logic.game.CardColor;
+import logic.game.CardSymbol;
+import logic.game.GameLogic;
+
+import java.util.ArrayList;
+
+//You CAN modify the first line
+public class DrawTwoCard extends EffectCard {
+
+	public DrawTwoCard(CardColor color) {
+		super(color, CardSymbol.DRAW_TWO);
+	}
+
+	@Override
+	public String performEffect() {
+		
+		String b = "one";
+		BaseCard onHand = new DrawFourCard();
+		gameInstance.incrementDrawAmount(2);
+		gameInstance.goToNextPlayer();
+		while(true){
+		if (gameInstance.getCurrentPlayerHand().size() == 0) gameInstance.goToNextPlayer();
+		else  break;
+	}	
+		for (BaseCard onCard :gameInstance.getCurrentPlayerHand()) {
+			switch (onCard.getSymbol()) {
+			case DRAW_FOUR : b = "four";onHand = onCard; break;
+			case DRAW_TWO : b = "two";;onHand = onCard ;
+//			message += "Player "+gameInstance.getCurrentPlayer()+" "+ onCard.toString()+"\n";	
+			break;
+			default:
+			}
+		}
+		System.out.println(gameInstance.getCurrentPlayer());
+		String message = "Player " + gameInstance.getCurrentPlayer() + " played " + onHand.toString() + ". "
+			+ (gameInstance.getCurrentPlayerHand().size()-1) + " cards remaining.\n";
+		switch(b) {
+		case "four":return message + onHand.play();
+		case "two":return message + onHand.play();
+		default: 
+		int drawAmount = gameInstance.getDrawAmount();
+		gameInstance.getCurrentPlayerHand().addAll(gameInstance.draw(drawAmount));
+		gameInstance.setDrawAmount(0);
+		return "Player " + gameInstance.getCurrentPlayer() + " drew " + gameInstance.getDrawAmount() + " cards. "
+				+ gameInstance.getCurrentPlayerHand().size() + " cards remaining.";	
+		}
+
+	}
+//		while (true) {
+//			gameInstance.goToNextPlayer();
+//			if (gameInstance.getCurrentPlayerHand().size() != 0) {
+//				b = true;
+//				for (BaseCard a : gameInstance.getCurrentPlayerHand()) {
+//					switch (a.getSymbol()) {
+//					case DRAW_TWO:
+//						gameInstance.incrementDrawAmount(2);
+//						gameInstance.setTopCard(a);
+//						gameInstance.getCurrentPlayerHand().remove(a);
+//						message += "Player " + gameInstance.getCurrentPlayer() + " played " + a.toString() + ". "
+//								+ gameInstance.getCurrentPlayerHand().size() + " cards remaining.\n";
+//						b = false;
+//						break;
+//					case DRAW_FOUR:
+//
+//						gameInstance.incrementDrawAmount(4);
+//						CardColor z;
+//						gameInstance.setTopCard(a);
+//						gameInstance.getCurrentPlayerHand().remove(a);
+//						if (gameInstance.getCurrentPlayerHand().isEmpty()) {
+//							z = CardColor.RED;
+//							a.setColor(CardColor.RED);
+//						} else {
+//							z = gameInstance.getCurrentPlayerHand().get(0).getColor();
+//							a.setColor(gameInstance.getCurrentPlayerHand().get(0).getColor());
+//							if (z == null)
+//								z = CardColor.RED;
+//						}
+//
+//						message += "Player " + gameInstance.getCurrentPlayer() + " played DRAW FOUR. "
+//								+ gameInstance.getCurrentPlayerHand().size() + " cards remaining.\n";
+//						message += "Set color to " + z + "\n";
+//						b = false;
+//						break;
+//					default:
+//					}
+//				}
+//			}
+//			if (b)
+//				break;
+//
+//		}
+//		gameInstance.getCurrentPlayerHand().addAll(gameInstance.draw(gameInstance.getDrawAmount()));
+//		message += "Player " + gameInstance.getCurrentPlayer() + " drew " + gameInstance.getDrawAmount() + " cards. "
+//				+ gameInstance.getCurrentPlayerHand().size() + " cards remaining.";
+//		;
+//		gameInstance.setDrawAmount(0);
+//		return message;
+//	}
+
+	@Override
+	public String toString() {
+		return this.getColor().toString() + " " + this.getSymbol().toString();
+	}
+
+	@Override
+	public boolean canPlay() {
+		return gameInstance.getTopCard().getColor().equals(this.getColor())
+				|| gameInstance.getTopCard().getSymbol().equals(this.getSymbol());
+	}
+
+}

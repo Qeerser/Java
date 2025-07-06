@@ -1,0 +1,113 @@
+package Ztest;
+
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
+public class dfd extends Application {
+
+    private boolean isPressed = false; // Flag to indicate if the button is currently pressed
+    Timeline timeline;
+    @Override
+    public void start(Stage primaryStage) {
+    	
+    	
+    	try {
+			ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(Paths.get("res/a.txt")));
+			oos.write(0);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	
+    	try {
+			ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(Paths.get("res/a.txt")));
+			ois.write(0);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+        Button button = new Button("Invoke Method");
+        button.setOnMousePressed(event -> {
+        	System.out.println(event);
+            // Check if the button is not already pressed
+            if (!isPressed) {
+                isPressed = true;
+                startMethodInvocation();
+            }
+        });
+        button.setOnMouseReleased(event -> {
+            // Reset the flag when the button is released
+            isPressed = false;
+            timeline.stop();
+        });
+
+        StackPane root = new StackPane();
+        root.getChildren().add(button);
+
+        
+        
+        Scene scene = new Scene(root, 400, 300);
+        
+        scene.setOnMousePressed(event -> {
+            if (true) {
+                isPressed = true;
+                System.out.println(event);
+            }
+        });
+        
+        
+        scene.setOnKeyPressed(e -> {
+           
+                System.out.println("The 'A' key was pressed");
+        });
+        
+        
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Continuous Method Invocation Example");
+        primaryStage.show();
+    }
+
+    private void startMethodInvocation() {
+        // Create a Timeline that triggers the method invocation every frame
+        timeline = new Timeline(new KeyFrame(Duration.ZERO, event -> {
+            // Call your method here
+            yourMethod();
+        }), new KeyFrame(Duration.millis(160))); // 60 FPS (adjust as needed)
+
+        timeline.setCycleCount(Timeline.INDEFINITE); // Repeat indefinitely
+        timeline.play();
+    }
+
+    private void yourMethod() {
+        // The method to be invoked continuously while the button is pressed
+        System.out.println("Method invoked!");
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
+
+
+

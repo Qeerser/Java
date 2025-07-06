@@ -1,0 +1,50 @@
+package Ztest;
+
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+public class dfd extends Application {
+    private static final String DEFAULT_TEXT = "Click Me!";
+    private static final String DEFAULT_STYLE = "-fx-font-family: 'Arial'; -fx-font-weight: bold; -fx-font-size: 18; -fx-fill: black;";
+    private static final String HOVER_STYLE = "-fx-font-size: 24; -fx-fill: red;";
+
+    @Override
+    public void start(Stage primaryStage) {
+        Text text = createText(DEFAULT_TEXT, DEFAULT_STYLE);
+        addMouseHandlers(text);
+
+        StackPane root = new StackPane();
+        root.getChildren().add(text);
+
+        Scene scene = new Scene(root, 400, 300);
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        primaryStage.setTitle("Clickable Text Example");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private Text createText(String textContent, String style) {
+        Text text = new Text(textContent);
+        text.setStyle(style);
+        return text;
+    }
+
+    private void addMouseHandlers(Text text) {
+        text.setOnMouseEntered(event -> text.setStyle(DEFAULT_STYLE + HOVER_STYLE));
+        text.setOnMouseExited(event -> text.setStyle(DEFAULT_STYLE));
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
+
+
+

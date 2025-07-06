@@ -1,0 +1,23 @@
+package Ztest;
+
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
+public class aas {
+
+	 public static void main(String[] args) {
+	        int a = 5;
+	        int b = 10;
+
+	        BooleanBinding comparisonBinding = Bindings.createBooleanBinding(() -> a > b);
+
+	        System.out.println("Comparison: " + comparisonBinding.get());
+
+	        a = 15;
+
+	        System.out.println("Comparison: " + comparisonBinding.get());
+	    }
+}
+

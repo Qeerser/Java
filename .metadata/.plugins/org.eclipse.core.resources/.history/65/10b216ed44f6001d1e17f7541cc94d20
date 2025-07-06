@@ -1,0 +1,49 @@
+package Ztest;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+public class aas {
+
+    // Mapping of plus level to success rate
+    private static final Map<Integer, Double> successRates = new HashMap<>();
+
+    static {
+        // Initialize the success rates for each plus level
+        successRates.put(0, 0.9);  // Plus 0 has a 90% success rate
+        successRates.put(1, 0.8);  // Plus 1 has an 80% success rate
+        successRates.put(2, 0.7);  // Plus 2 has a 70% success rate
+        successRates.put(3, 0.6);  // Plus 3 has a 60% success rate
+        // Add more plus levels and their corresponding success rates if needed
+    }
+
+    public static void main(String[] args) {
+        int weaponPlus = 2; // Example plus level of the weapon
+
+        boolean enchantSuccess = enchantWeapon(weaponPlus);
+        if (enchantSuccess) {
+            System.out.println("Enchantment successful!");
+            // Increase the plus level of the weapon
+            weaponPlus++;
+        } else {
+            System.out.println("Enchantment failed.");
+            // Handle failure case, e.g., durability decrease or other consequences
+        }
+
+        System.out.println("Weapon Plus Level: " + weaponPlus);
+    }
+
+    private static boolean enchantWeapon(int plusLevel) {
+        if (!successRates.containsKey(plusLevel)) {
+            System.out.println("Invalid plus level: " + plusLevel);
+            return false;
+        }
+
+        double successRate = successRates.get(plusLevel);
+        Random random = new Random();
+        double randomValue = random.nextDouble();
+
+        return randomValue <= successRate;
+    }
+}

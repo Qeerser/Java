@@ -1,0 +1,49 @@
+package logic;
+
+import java.util.ArrayList;
+
+public class Market {
+
+	// fields
+	ArrayList<Item> allItems;
+
+	// constructors
+	public Market() {
+		//FILL CODE
+		this.allItems = new ArrayList<Item>();
+	}
+
+	public Market(ArrayList<Item> items) {
+		//FILL CODE
+		this.allItems = items;
+	}
+
+	// methods
+	public String toString() {
+		String out = "\n";
+		for (int i = 0; i < allItems.size(); i++) {
+			out += i + 1;
+			out += ". ";
+			out += allItems.get(i).toString();
+			out += "\n";
+		}
+		return out;
+	}
+
+	public void addAllItems(ArrayList<Item> items) {
+		//FILL CODE
+		for (Item mk : allItems) {
+			for (Item ne : items) {
+				if (mk.getItemName().equals(ne.getItemName()));
+				this.allItems.add(ne);
+				}
+		}
+	}
+
+	//getter setters 
+	//FILL CODE
+	public ArrayList<Item> getAllItems() {
+		return this.allItems;
+	}
+
+}

@@ -1,0 +1,300 @@
+import java.util.ArrayList;
+
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+
+public class RockSmasher extends Application {
+	static Scene home ;
+	static Scene bag;
+	static Scene map;
+	static Scene enchant;
+	private static VBox PlayerStatus;
+	@Override
+	public void start(Stage primaryStage) {
+		// Create buttons
+		for(int i = 1 ; i <= 100; i++) {
+			
+			Stages s = new Stages(i);
+			GameUtil.stages.add(s);
+
+		}
+		Player a = new Player();
+		GameUtil.user = a ;
+		GameUtil.game = primaryStage;
+		enchantScene();
+		bagScene();
+		homeScene();
+		mapScene();
+		home();
+		primaryStage.show();
+	}
+	
+	public static void bagScene() {
+		
+		HBox layout = new HBox();
+		
+		VBox PlayerStatus = new VBox(new Text("Player"));
+		PlayerStatus.setSpacing(20);
+		PlayerStatus.setAlignment(Pos.CENTER);
+		PlayerStatus.setPrefWidth(400);
+		PlayerStatus.setBackground(new Background(new BackgroundFill(Color.WHITE, null, new Insets(10))));
+		PlayerStatus.getChildren().add(new Text("Attack : " + GameUtil.user.getWeapon().getDamage()));
+		PlayerStatus.getChildren().add(new Text("Weapon : "+GameUtil.user.getWeapon().getName()));
+		PlayerStatus.getChildren().add(new StackPane(
+				new Rectangle(55, 55, Color.GRAY),GameUtil.user.getWeapon().getIcon(60, 60)));
+		
+		
+		
+		
+		GridPane bagSlot = new GridPane();
+		bagSlot.setAlignment(Pos.CENTER);
+		bagSlot.setVgap(10);
+		bagSlot.setHgap(10);
+		bagSlot.setPrefWidth(600);
+		bagSlot.setBackground(new Background(new BackgroundFill(Color.BLACK, null, new Insets(10))));
+		
+		layout.getChildren().addAll(PlayerStatus,bagSlot);
+		
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j <8; j++) {
+				StackPane show = new StackPane();
+				show.setAlignment(Pos.CENTER);
+				show.setPrefSize(60, 60);
+				show.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null)));
+				bagSlot.add(show, j, i);
+				GameUtil.itemSlot.add(show);
+			}
+			
+		}
+		
+		Button back = new Button("Back");
+		back.setOnMouseClicked(event -> {RockSmasher.home();});
+		bagSlot.add(back, 7, 8);
+		
+		Scene scene = new Scene(layout, 1000, 700);
+
+		// set the Scene on the Stage and show it
+		bag = scene;
+	}
+	
+	public static void bag() {
+		System.out.println(GameUtil.user.getBag().getAllItem());
+		ArrayList<BagItem> allItem = GameUtil.user.getBag().getAllItem();
+		for (StackPane i : GameUtil.itemSlot) {
+			i.getChildren().clear();
+		}
+		
+    	for (int i = 0; i < allItem.size(); i++) {
+    		GameUtil.itemSlot.get(i).getChildren().clear();
+    		GameUtil.itemSlot.get(i).getChildren().add(new Rectangle(55, 55, Color.GRAY));
+//    		GameUtil.getItemSlot().get(i).getChildren().add(new Text(allItem.get(i).getName()));
+    		GameUtil.itemSlot.get(i).getChildren().add(allItem.get(i).getIcon(32, 32));
+			if(allItem.get(i) instanceof Stackable) {
+				StackPane amount = new StackPane(new Text("" +((Stackable) allItem.get(i)).getAmount()));
+				amount.setPadding(new Insets(7));
+				amount.setAlignment(Pos.BOTTOM_RIGHT);
+				GameUtil.itemSlot.get(i).getChildren().add(amount);
+			}
+		}
+		GameUtil.game.setScene(bag);
+	}
+	
+	public static void home() {
+		GameUtil.game.setScene(home);
+	}
+	
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+	
+	public static void homeScene(){
+		Button bagButton = new Button("Bag");
+		bagButton.setPrefSize(100, 70);
+		Button enchantButton = new Button("Enchant");
+		enchantButton.setPrefSize(100, 70);
+		Button shopButton = new Button("Shop");
+		shopButton.setPrefSize(100, 70);
+		Button settingButton = new Button("Setting");
+		settingButton.setPrefSize(100, 70);
+		Button playButton = new Button("Play");
+		
+		playButton.setPrefSize(150, 100);
+		
+		enchantButton.setOnAction(arg0 -> {
+			enchant();
+		});
+		bagButton.setOnAction(arg0 -> {
+			bag();
+		});
+		playButton.setOnAction(arg0 -> {
+			map();
+		});
+
+		// Create button containers
+		HBox topContainer = new HBox(bagButton, enchantButton);
+		topContainer.setPrefHeight(200);
+		topContainer.setAlignment(Pos.BOTTOM_CENTER);
+		topContainer.setSpacing(200);
+		HBox bottomContainer = new HBox(shopButton, settingButton);
+		bottomContainer.setPrefHeight(200);
+		bottomContainer.setAlignment(Pos.CENTER);
+		bottomContainer.setSpacing(200);
+		VBox centerContainer = new VBox(playButton);
+		centerContainer.setAlignment(Pos.CENTER);
+
+		// Create layout
+		BorderPane layout = new BorderPane();
+		layout.setTop(topContainer);
+		layout.setBottom(bottomContainer);
+		layout.setCenter(centerContainer);
+
+		// Create scene
+		Scene scene = new Scene(layout, 1000, 700);
+
+		// Set stage title
+
+		// Set scene and show stage
+		home = scene;
+	}
+	
+	public static void mapScene() {
+		FlowPane layout = new FlowPane();
+		layout.setPadding(new Insets(20));
+		layout.setVgap(10);
+		layout.setHgap(10);
+		
+		for(int i = 1 ; i <= 100; i++) {
+			Button b = new Button("" + i);
+			b.setPrefSize(50, 10);
+			Stages s = GameUtil.stages.get(i-1);
+			b.setOnMouseClicked(event ->{
+				s.GameShow();
+			});
+			layout.getChildren().addAll(b,new Text(""+ s.isClear()));
+		}
+		
+		Scene scene = new Scene(layout, 1000, 700);
+		map = scene;
+	}
+	
+	public static void map() {
+		
+		GameUtil.game.setScene(map);
+	}
+	
+	public static void enchant() {
+		ArrayList<BagItem> allItem = GameUtil.user.getBag().getAllItem();
+		
+		PlayerStatus = new VBox(new Text("Enchant"));
+		PlayerStatus.setSpacing(20);
+		PlayerStatus.setAlignment(Pos.CENTER);
+		PlayerStatus.setPrefWidth(400);
+		PlayerStatus.setBackground(new Background(new BackgroundFill(Color.WHITE, null, new Insets(10))));
+		PlayerStatus.getChildren().add(new Text("Attack : " + GameUtil.user.getWeapon().getDamage()));
+		PlayerStatus.getChildren().add(new Text("Weapon : "+GameUtil.user.getWeapon().getName()));
+		PlayerStatus.getChildren().add(new StackPane(
+				new Rectangle(55, 55, Color.GRAY),GameUtil.user.getWeapon().getIcon(60, 60)));
+		Pickaxe target = GameUtil.user.getWeapon();
+		PlayerStatus.getChildren().add(new Text("Minarals : " + target.getMineral() + " " + Math.pow(2,GameUtil.user.getWeapon().getPlus()) +" bars"));
+		
+		Button upgrade = new Button("Button");
+		PlayerStatus.getChildren().add(upgrade);
+		upgrade.setOnMouseClicked(event ->{
+			
+			GameUtil.Upgrade(target);
+			enchantScene();
+			enchant();
+		});
+		for (StackPane i : GameUtil.itemSlot2) {
+			i.getChildren().clear();
+		}
+		
+    	for (int i = 0; i < allItem.size(); i++) {
+    		GameUtil.itemSlot2.get(i).getChildren().clear();
+    		GameUtil.itemSlot2.get(i).getChildren().add(new Rectangle(55, 55, Color.GRAY));
+//    		GameUtil.getItemSlot().get(i).getChildren().add(new Text(allItem.get(i).getName()));
+    		GameUtil.itemSlot2.get(i).getChildren().add(allItem.get(i).getIcon(32, 32));
+			if(allItem.get(i) instanceof Stackable) {
+				StackPane amount = new StackPane(new Text("" +((Stackable) allItem.get(i)).getAmount()));
+				amount.setPadding(new Insets(7));
+				amount.setAlignment(Pos.BOTTOM_RIGHT);
+				GameUtil.itemSlot2.get(i).getChildren().add(amount);
+			}
+		}
+		GameUtil.game.setScene(enchant);
+	}
+	
+	public static void enchantScene() {
+		
+		HBox layout = new HBox();
+		
+		PlayerStatus = new VBox(new Text("Enchant"));
+		PlayerStatus.setSpacing(20);
+		PlayerStatus.setAlignment(Pos.CENTER);
+		PlayerStatus.setPrefWidth(400);
+		PlayerStatus.setBackground(new Background(new BackgroundFill(Color.WHITE, null, new Insets(10))));
+		PlayerStatus.getChildren().add(new Text("Attack : " + GameUtil.user.getWeapon().getDamage()));
+		PlayerStatus.getChildren().add(new Text("Weapon : "+GameUtil.user.getWeapon().getName()));
+		PlayerStatus.getChildren().add(new StackPane(
+				new Rectangle(55, 55, Color.GRAY),GameUtil.user.getWeapon().getIcon(60, 60)));
+		Pickaxe target = GameUtil.user.getWeapon();
+		PlayerStatus.getChildren().add(new Text("Minarals : " + target.getMineral() + " " + Math.pow(2,GameUtil.user.getWeapon().getPlus()) +" bars"));
+		
+		Button upgrade = new Button("Button");
+		PlayerStatus.getChildren().add(upgrade);
+		upgrade.setOnMouseClicked(event ->{
+			
+			GameUtil.Upgrade(target);
+			enchantScene();
+			enchant();
+		});
+		
+		
+		GridPane bagSlot = new GridPane();
+		bagSlot.setAlignment(Pos.CENTER);
+		bagSlot.setVgap(10);
+		bagSlot.setHgap(10);
+		bagSlot.setPrefWidth(600);
+		bagSlot.setBackground(new Background(new BackgroundFill(Color.BLACK, null, new Insets(10))));
+		
+		layout.getChildren().addAll(PlayerStatus,bagSlot);
+		
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j <8; j++) {
+				StackPane show = new StackPane();
+				show.setAlignment(Pos.CENTER);
+				show.setPrefSize(60, 60);
+				show.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null)));
+				bagSlot.add(show, j, i);
+				GameUtil.itemSlot2.add(show);
+			}
+			
+		}
+		
+		Button back = new Button("Back");
+		back.setOnMouseClicked(event -> {RockSmasher.home();});
+		bagSlot.add(back, 7, 8);
+		
+		Scene scene = new Scene(layout, 1000, 700);
+
+		// set the Scene on the Stage and show it
+		enchant = scene;
+	}
+}

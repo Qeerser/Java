@@ -1,0 +1,17 @@
+package Ztest;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+public class aas {
+
+    public static void main(String[] args) {
+    	
+    	
+        String[] a = {"a","b"};
+        System.out.println(a);
+        
+    }
+}

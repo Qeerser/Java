@@ -1,0 +1,21 @@
+package Game.logic;
+
+import java.util.ArrayList;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+public class SoundControl {
+	
+	Media a = new Media(ClassLoader.getSystemResource("music/GameOpen.m4a").toString());
+	MediaPlayer b = new MediaPlayer(a);
+	b.play();
+	ArrayList<Media> soundList = new ArrayList<>();
+	
+	
+	
+	public void playSound(int soundList) {
+		
+	}
+	
+}

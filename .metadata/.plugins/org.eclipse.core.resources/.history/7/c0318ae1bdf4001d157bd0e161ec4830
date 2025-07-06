@@ -1,0 +1,20 @@
+
+public class WoodPickaxe extends Pickaxe {
+
+	public WoodPickaxe(int damage, int plus) {
+		super(damage, plus);
+	}
+
+	@Override
+	public int getAmount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setAmount(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

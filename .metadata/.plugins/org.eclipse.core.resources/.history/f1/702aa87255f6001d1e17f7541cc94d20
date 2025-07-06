@@ -1,0 +1,73 @@
+package Game.logic;
+import java.util.Random;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+public enum Minerals {
+	Iron(11,"Iron", 70,"file:pic/iron.png",1000), 
+	Bronze(12,"Bronze", 20,"file:pic/bronze.png",10000), 
+	Silver(13,"Silver", 7,"file:pic/silver.png",100000), 
+	Gold(14,"Gold", 2,"file:pic/gold.png",1000000), 
+	Diamond(15,"Diamond", 1,"file:pic/diamond.png",10000000);
+
+	private String displayName;
+	private int randomRate;
+	private ImageView icon;
+	private int id;
+	private int cost;
+
+	Minerals(int id ,String displayName, int randomRate,String text,int cost) {
+		this.cost = cost;
+		this.id = id;
+		this.displayName = displayName;
+		this.randomRate = randomRate;
+		this.icon = new ImageView(new Image(text));
+	}
+
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public int getRandomRate() {
+		return randomRate;
+	}
+
+	public static Minerals getRandom() {
+		Random random = new Random();
+		int totalRates = 0;
+
+		for (Minerals rank : values()) {
+			totalRates += rank.getRandomRate();
+		}
+
+		int randomValue = random.nextInt(totalRates);
+		int cumulativeRate = 0;
+
+		for (Minerals rank : values()) {
+			cumulativeRate += rank.getRandomRate();
+			if (randomValue < cumulativeRate) {
+				return rank;
+			}
+		}
+
+		// In case of unexpected scenarios, return a default rank
+		return Iron;
+	}
+
+	public ImageView getIcon(int width, int height) {
+		icon.setFitHeight(height);
+		icon.setFitWidth(width);
+		return icon;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public int getCost() {
+		return cost;
+	}
+
+	
+}

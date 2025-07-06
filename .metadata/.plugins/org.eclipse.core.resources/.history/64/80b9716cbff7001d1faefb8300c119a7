@@ -1,0 +1,56 @@
+package Entities;
+import Entities.Weapon.BronzePickaxe;
+import Entities.Weapon.DiamondPickaxe;
+import Entities.Weapon.GoldPickaxe;
+import Entities.Weapon.IronPickaxe;
+import Entities.Weapon.SilverPickaxe;
+import Entities.Weapon.WoodPickaxe;
+import Game.logic.Mineral;
+import Game.logic.Pickaxe;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
+public class Player {
+	private Pickaxe weapon;
+	private Bag bag = new Bag();
+	private int coin = 100 ;
+	public IntegerProperty coinob = new SimpleIntegerProperty(100);
+	
+	public Player() {
+		super();
+		this.weapon = new WoodPickaxe(0);
+		this.bag.addItem(this.weapon);
+		this.bag.addItem(new IronPickaxe(0));
+		this.bag.addItem(new BronzePickaxe(0));
+		this.bag.addItem(new SilverPickaxe(0));
+		this.bag.addItem(new GoldPickaxe(0));
+		this.bag.addItem(new DiamondPickaxe(99));
+		this.bag.addItem(new Item(Minerals.Iron, 100));
+		this.bag.addItem(new Item(Minerals.Bronze, 100));
+		this.bag.addItem(new Item(Minerals.Gold, 100));
+		this.bag.addItem(new Item(Minerals.Silver, 100));
+		this.bag.addItem(new Item(Minerals.Diamond, 100));
+		
+	}
+	public Pickaxe getWeapon() {
+		return weapon;
+	}
+	public void setWeapon(Pickaxe weapon) {
+		this.weapon = weapon;
+	}
+	
+	public Bag getBag() {
+		return bag;
+	}
+	public void setBag(Bag bag) {
+		this.bag = bag;
+	}
+	public int getCoin() {
+		return coin;
+	}
+	public void setCoin(int coin) {
+		this.coin = coin;
+		coinob.set(coin);
+	}
+	
+}

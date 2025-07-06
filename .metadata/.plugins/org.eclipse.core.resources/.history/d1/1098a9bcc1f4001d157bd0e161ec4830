@@ -1,0 +1,59 @@
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+public abstract class Pickaxe implements BagItem {
+	
+	private Minerals mineral; 
+	private int damage;
+	private int plus;
+	private String name;
+	private String image = "file:pic/pickaxe.png";
+	
+	
+	public Pickaxe(int damage, int plus) {
+		
+		this.plus = plus;
+	}
+	
+	public int getDamage() {
+		return damage;
+	}
+	public void setDamage(int damage) {
+		this.damage = Math.max(damage, 0);
+	}
+	public int getPlus() {
+		return plus;
+	}
+	public void setPlus(int plus) {
+		this.plus = Math.max(plus, 0);
+		this.damage = (int) (damage*Math.pow(2, this.plus));
+	}
+
+
+	@Override
+	public String getName() {
+		return name + " +" + this.plus;
+	}
+	
+	public void  setName(String name) {
+		this.name = name;
+	}
+	
+	public ImageView getIcon(int width, int height) {
+		ImageView icon = new ImageView(new Image(image));
+		icon.setFitHeight(height);
+		icon.setFitWidth(width);
+		return icon;
+				
+	}
+
+	public Minerals getMineral() {
+		return mineral;
+	}
+
+	public void setMineral(Minerals mineral) {
+		this.mineral = mineral;
+	}
+	
+	
+}

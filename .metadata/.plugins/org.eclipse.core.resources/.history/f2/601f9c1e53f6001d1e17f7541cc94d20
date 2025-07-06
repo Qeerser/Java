@@ -1,0 +1,51 @@
+package Ztest;
+
+import java.util.*;
+
+public class aas {
+    // Mapping of reward types to their base drop rates
+    private static final Map<String, Double> baseDropRates = new HashMap<>();
+
+    static {
+        // Initialize base drop rates for each reward type
+        baseDropRates.put("Gold", 0.5);       // Base drop rate for Gold
+        baseDropRates.put("Silver", 0.3);     // Base drop rate for Silver
+        baseDropRates.put("Bronze", 0.2);     // Base drop rate for Bronze
+        baseDropRates.put("Copper", 0.1);     // Base drop rate for Copper
+        baseDropRates.put("Iron", 0.05);      // Base drop rate for Iron
+    }
+
+    public static void main(String[] args) {
+        int stageLevel = 10; // Example stage level
+
+        List<String> rewards = dropRewards(stageLevel, 5);
+        System.out.println("Rewards: " + rewards);
+    }
+
+    private static List<String> dropRewards(int stageLevel, int numRewards) {
+        List<String> availableRewardTypes = new ArrayList<>(baseDropRates.keySet());
+        List<String> droppedRewards = new ArrayList<>();
+
+        Random random = new Random();
+        for (int i = 0; i < numRewards; i++) {
+            double totalDropRate = 0.0;
+            double randomValue = random.nextDouble();
+
+            for (String rewardType : availableRewardTypes) {
+                double baseDropRate = baseDropRates.get(rewardType);
+
+                // Adjust the drop rate based on the stage level
+                double adjustedDropRate = baseDropRate * (1.0 + stageLevel * 0.1); // Increase by 10% per stage level
+
+                totalDropRate += adjustedDropRate;
+
+                if (randomValue <= totalDropRate) {
+                    droppedRewards.add(rewardType);
+                    break;
+                }
+            }
+        }
+
+        return droppedRewards;
+    }
+}

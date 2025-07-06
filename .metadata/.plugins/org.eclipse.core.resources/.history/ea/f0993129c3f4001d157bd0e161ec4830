@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+public class GameUtil {
+	public static Player user ;
+	public static Stage game ;	
+	public static ArrayList<StackPane> itemSlot2 = new ArrayList<>();
+	public static ArrayList<StackPane> itemSlot = new ArrayList<>();
+	public static ArrayList<Stages> stages = new ArrayList<>();
+	
+	
+	public static void Upgrade(Pickaxe p) {
+		if(user.getBag().getAllItem().contains(new Reward(p.getMineral(), 0)) && 
+				user.getBag().getAmountof(new Reward(p.getMineral(), 0) ) >= Math.pow(2,p.getPlus())) {
+			p.setPlus(1);
+			
+			System.out.println("Success");
+		}
+	}
+	
+
+}

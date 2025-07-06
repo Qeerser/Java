@@ -1,0 +1,18 @@
+package Player;
+
+import exception.NameBlankException;
+import logic.Item;
+
+public class Weapon extends Item {
+	private int powerup;
+	public Weapon(String itemName, int price,int powerup) throws NameBlankException {
+		super(itemName, price);
+		this.powerup = powerup;
+	}
+
+	@Override
+	public String toString() {
+		return this.getItemName() +" +"+this.powerup  +" "+ this.getPrice() +"$";
+	}
+	
+}

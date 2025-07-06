@@ -1,0 +1,24 @@
+
+public class Stages {
+	private StageMap map;
+	private boolean isClear = false;
+	
+	
+	
+	
+	
+	
+	public boolean isClear() {
+		return isClear;
+	}
+	public void setClear(boolean isClear) {
+		this.isClear = isClear;
+	}
+	public StageMap getMap() {
+		return map;
+	}
+	public void setMap(StageMap map) {
+		this.map = map;
+	}
+	
+}

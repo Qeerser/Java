@@ -1,0 +1,79 @@
+
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+
+public class Stone {
+	private int MaxHp;
+	private int Hp;
+	private int lvl;
+	private StackPane R;
+	private Reward item;
+	private ImageView sprite;
+
+	public Stone(int lvl) {
+		super();
+		ImageView sto = new ImageView(new Image("file:sprite.png"));
+		sto.setFitWidth(70);
+		sto.setFitHeight(50);
+		setSprite(sto);
+		item = new Reward(Minerals.getRandom(), 1);
+		Hp = (int) (10 * Math.pow(5, lvl) * (1 + Math.random()));
+		MaxHp = Hp;
+		
+		this.lvl = lvl;
+
+		StackPane n = new StackPane();
+		n.getChildren().addAll(sprite,new Rectangle(50, 60, Color.RED));
+		
+		setR(n);
+	}
+
+	public void Damage() {
+		this.setHp(Hp - GameUtil.getUser().getWeapon().getDamage());
+	}
+
+	public int getHp() {
+		return Hp;
+	}
+
+	public void setHp(int hp) {
+		Hp = Math.max(hp, 0);
+	}
+
+	public int getLvl() {
+		return lvl;
+	}
+
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
+	}
+
+	public StackPane getR() {
+		return R;
+	}
+
+	public void setR(StackPane r) {
+		R = r;
+	}
+
+	public int getMaxHp() {
+		return MaxHp;
+	}
+
+	public Reward getItem() {
+		return item;
+	}
+
+	public ImageView getSprite() {
+		return sprite;
+	}
+
+	public void setSprite(ImageView sprite) {
+		this.sprite = sprite;
+	}
+
+}

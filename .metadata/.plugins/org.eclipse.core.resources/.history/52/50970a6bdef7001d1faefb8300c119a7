@@ -1,0 +1,112 @@
+package Ztest;
+
+
+import java.util.ArrayList;
+
+import Entities.Player;
+import Entities.Item;
+import Game.logic.BagItem;
+import Game.logic.Mineral;
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+public class main extends Application {
+
+    // sample player data
+    private ArrayList<StackPane> itemSlot = new ArrayList<>();
+
+    @Override
+    public void start(Stage stage) {
+    	
+    	for(int i = 1; i <= 100 ; i++) {
+//    		System.out.println("Stage :"+i + " : " + (i/10)%2);
+//    		System.out.println("Stage :"+i + " : " + i/20);
+    		System.out.println((int) Math.pow(1.5, i));
+    		;
+    	}
+//    	Minerals.getRandom();
+    	
+    	
+    	
+    	Player player1 = new Player();
+    	Player player2 = new Player();
+    	player2.getBag().getAllItem().add(new Item(Mineral.Bronze, 1));
+		
+		HBox layout = new HBox();
+		
+		VBox PlayerStatus = new VBox();
+		PlayerStatus.setPrefWidth(400);
+		PlayerStatus.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+		GridPane bagSlot = new GridPane();
+		bagSlot.setAlignment(Pos.CENTER);
+		bagSlot.setVgap(10);
+		bagSlot.setHgap(10);
+		bagSlot.setPrefWidth(600);
+		bagSlot.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
+		layout.getChildren().addAll(PlayerStatus,bagSlot);
+		
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j <6; j++) {
+				StackPane show = new StackPane();
+				show.setAlignment(Pos.CENTER);
+				show.setPrefSize(80, 80);
+				show.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null)));
+				bagSlot.add(show, j, i);
+				itemSlot.add(show);
+			}
+		}
+		Button back = new Button("player1");
+		back.setOnMouseClicked(event -> {update(player1);});
+		bagSlot.add(back, 5, 7);
+		
+		Button back2 = new Button("player2");
+		back2.setOnMouseClicked(event -> {update(player2);});
+		bagSlot.add(back2, 5, 8);
+		
+		
+		
+		
+		Scene scene = new Scene(layout, 1000, 700);
+
+		// set the Scene on the Stage and show it
+		stage.setScene(scene);
+	
+    }
+    
+    public void update(Player player) {
+		ArrayList<BagItem> allItem = player.getBag().getAllItem();
+		for (StackPane i : itemSlot) {
+			i.getChildren().clear();
+		}
+    	for (int i = 0; i < allItem.size(); i++) {
+    		itemSlot.get(i).getChildren().clear();
+    		itemSlot.get(i).getChildren().add(new Rectangle(75, 75, Color.GRAY));
+			itemSlot.get(i).getChildren().add(new Text(allItem.get(i).getName()));
+			
+//			itemSlot.get(i).getChildren().add(allItem.get(i).getIcon(32, 32));
+//			if(allItem.get(i) instanceof Stackable) {
+//				System.out.println("stack");
+//				StackPane amount = new StackPane(new Text("" +allItem.get(i).getAmount()));
+//				amount.setPadding(new Insets(7));
+//				amount.setAlignment(Pos.BOTTOM_RIGHT);
+//				itemSlot.get(i).getChildren().add(amount);
+//			}
+		}
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}

@@ -1,0 +1,84 @@
+package Ztest;
+
+import java.util.*;
+
+public class aas {
+    // Mapping of reward types to their ranks
+    private static final Map<String, Integer> rewardRanks = new HashMap<>();
+
+    static {
+        // Initialize reward ranks for each type
+        rewardRanks.put("Gold", 1);     // Rank 1 rewards of type Gold
+        rewardRanks.put("Silver", 2);   // Rank 2 rewards of type Silver
+        rewardRanks.put("Bronze", 3);   // Rank 3 rewards of type Bronze
+        rewardRanks.put("Copper", 4);   // Rank 4 rewards of type Copper
+        rewardRanks.put("Iron", 5);     // Rank 5 rewards of type Iron
+    }
+
+    public static void main(String[] args) {
+        int stageLevel = 3; // Example stage level
+
+        List<Reward> rewards = dropRewards(stageLevel, 5);
+        System.out.println("Rewards: " + rewards);
+    }
+
+    private static List<Reward> dropRewards(int stageLevel, int numRewards) {
+        List<String> availableRewardTypes = new ArrayList<>(rewardRanks.keySet());
+        List<Reward> droppedRewards = new ArrayList<>();
+
+        Random random = new Random();
+        for (int i = 0; i < numRewards; i++) {
+            int rewardTypeIndex = random.nextInt(availableRewardTypes.size());
+            String rewardType = availableRewardTypes.get(rewardTypeIndex);
+            int rewardRank = rewardRanks.get(rewardType);
+
+            // Adjust the reward rank based on the stage level
+            int adjustedRewardRank = Math.min(rewardRank + stageLevel - 1, rewardRanks.size());
+
+            // Generate a random amount for the reward
+            int minAmount = 1;
+            int maxAmount = 10; // Adjust the maximum amount as needed
+            int rewardAmount = random.nextInt(maxAmount - minAmount + 1) + minAmount;
+
+            // Create the Reward object and add it to the dropped rewards list
+            Reward reward = new Reward(rewardType, adjustedRewardRank, rewardAmount);
+            droppedRewards.add(reward);
+
+            // Remove the reward type if the maximum rank is reached
+            if (adjustedRewardRank >= rewardRanks.size()) {
+                availableRewardTypes.remove(rewardType);
+            }
+        }
+
+        return droppedRewards;
+    }
+
+    private static class Reward {
+        private String type;
+        private int rank;
+        private int amount;
+
+        public Reward(String type, int rank, int amount) {
+            this.type = type;
+            this.rank = rank;
+            this.amount = amount;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public int getRank() {
+            return rank;
+        }
+
+        public int getAmount() {
+            return amount;
+        }
+
+        @Override
+        public String toString() {
+            return type + " (Rank " + rank + ") - Amount: " + amount;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+.text-default {
+    -fx-font-family: 'Arial';
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+    -fx-fill: black;
+}
+
+.text-hover {
+    -fx-font-size: 24;
+    -fx-fill: red;
+}

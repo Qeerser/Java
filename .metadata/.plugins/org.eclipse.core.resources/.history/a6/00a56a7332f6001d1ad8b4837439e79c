@@ -1,0 +1,12 @@
+package Entities.Weapon;
+import Game.logic.Minerals;
+import Game.logic.Pickaxe;
+
+public class IronPickaxe extends Pickaxe {
+
+	public IronPickaxe(int damage, int plus) {
+		super(damage, plus,"IronPickaxe",2) ;
+		this.setMineral(Minerals.Bronze);
+	}
+	
+}

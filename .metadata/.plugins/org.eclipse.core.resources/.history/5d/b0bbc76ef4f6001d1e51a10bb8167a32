@@ -1,0 +1,39 @@
+package Ztest;
+
+
+import java.util.List;
+
+import javafx.application.Application;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+
+public class dfd extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        // Load the custom font
+        Font.loadFont(getClass().getResourceAsStream("file:PixelOperator.ttf"), 14);
+
+        // Check if the font is available
+        List<String> fontFamilies = Font.getFamilies();
+        boolean fontLoaded = false;
+        for (String fontFamily : fontFamilies) {
+            if (fontFamily.equals("CustomFont")) {
+                fontLoaded = true;
+                break;
+            }
+        }
+
+        if (fontLoaded) {
+            System.out.println("CustomFont has been successfully loaded.");
+        } else {
+            System.out.println("CustomFont could not be loaded.");
+        }
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
+
+

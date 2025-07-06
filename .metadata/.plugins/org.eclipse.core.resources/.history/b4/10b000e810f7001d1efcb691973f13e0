@@ -1,0 +1,94 @@
+package Entities;
+
+
+
+import java.util.Random;
+
+import Game.logic.GameUtil;
+import Game.logic.Minerals;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+public class Stone {
+	private int MaxHp;
+	private int Hp;
+	private int lvl;
+	private Bag dropItems = new Bag();
+	private ImageView sprite;
+
+	public Stone(int lvl) {
+		
+		ImageView sto = new ImageView(new Image("file:pic/Rock.png"));
+		sto.setFitWidth(70);
+		sto.setFitHeight(50);
+		this.setLvl(lvl);
+		setSprite(sto);
+		
+		Hp = (int) (10 * Math.pow(5, lvl) * (1 + Math.random()));
+		MaxHp = Hp;
+		dropItemsGenerate();
+		
+	}
+	
+	public void dropItemsGenerate() {
+		System.out.println((lvl-1)/2);
+		Random random = new Random();
+		int randomValue = random.nextInt(100);
+		int cumulativeRate = 0;
+		int amount = (lvl-1)/2;
+		for (int i = 0 ; true ; i++) {
+			cumulativeRate += 120/Math.pow(2, i+1);
+			amount++;
+			if (randomValue < cumulativeRate) {break;
+				}
+		}
+		for (int i = 0 ; i < amount ; i++) {
+			dropItems.addItem(new Reward(Minerals.getRandom((lvl-1)/2), 1));
+		}
+		
+	}
+	
+	public Bag getDrop() {
+		return this.dropItems;
+	}
+	
+	public void upToBoss(int level) {
+		this.MaxHp *= 2;
+		this.Hp *= 2;
+		sprite.setFitHeight(120);
+		sprite.setFitWidth(160);
+	}
+
+	public void Damage() {
+		this.setHp(Hp - GameUtil.user.getWeapon().getDamage());
+	}
+
+	public int getHp() {
+		return Hp;
+	}
+
+	public void setHp(int hp) {
+		Hp = Math.max(hp, 0);
+	}
+
+	public int getLvl() {
+		return lvl;
+	}
+
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
+	}
+
+	public int getMaxHp() {
+		return MaxHp;
+	}
+
+	public ImageView getSprite() {
+		return sprite;
+	}
+
+	public void setSprite(ImageView sprite) {
+		this.sprite = sprite;
+	}
+
+}

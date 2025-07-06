@@ -1,0 +1,15 @@
+package Ztest;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+
+public class aas {
+
+    public static void main(String[] args) {
+        String content = "Hello, World!";
+        System.out.println(ClassLoader.getSystemResource("join.jpg").toString());
+        
+    }
+}

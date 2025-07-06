@@ -1,0 +1,13 @@
+package Entities.Weapon;
+
+import Game.logic.Minerals;
+import Game.logic.Pickaxe;
+
+public class DiamondPickaxe extends Pickaxe {
+
+		public DiamondPickaxe(int plus) {
+			super((int) Math.pow(10, 9), plus,"DiamondPickaxe",6) ;
+			this.setMineral(Minerals.Bronze);
+		}
+	}
+}

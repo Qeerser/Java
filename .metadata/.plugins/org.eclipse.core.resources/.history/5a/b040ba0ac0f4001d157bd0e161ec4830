@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+public class GameUtil {
+	public static Player user ;
+	public static Stage game ;	
+	public static ArrayList<StackPane> itemSlot2 = new ArrayList<>();
+	public static ArrayList<StackPane> itemSlot = new ArrayList<>();
+	public static ArrayList<Stages> stages = new ArrayList<>();
+	
+	
+	public static void Upgrade() {
+		
+	}
+	
+
+}

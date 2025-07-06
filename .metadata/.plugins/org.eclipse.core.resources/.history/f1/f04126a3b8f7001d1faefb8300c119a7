@@ -1,0 +1,5 @@
+package Game.logic;
+
+public interface Stackable {
+	int getAmount();
+}

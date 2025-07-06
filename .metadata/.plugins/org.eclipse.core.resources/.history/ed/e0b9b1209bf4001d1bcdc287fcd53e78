@@ -1,0 +1,52 @@
+import javafx.scene.image.ImageView;
+
+public class Reward implements BagItem,Stackable {
+	private Minerals Type;
+	private int amount;
+
+	public Reward(Minerals type, int amount) {
+		Type = type;
+		this.amount = amount;
+	}
+		
+	public boolean equals(Object obj) {
+	        if (this == obj) {
+	            return true;
+	        }
+	        
+	        if (getClass() == obj.getClass() || this.getName() == ((Reward) obj).getName()) return true;
+	        	
+	        if (obj == null || getClass() != obj.getClass()) {
+	            return false;
+	        }
+
+	        
+	        return false;
+	   }
+	
+
+	public Minerals getType() {
+		return Type;
+	}
+
+	public void setType(Minerals type) {
+		Type = type;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	public String getName() {
+		return Type.getDisplayName();
+	}
+
+	public ImageView getIcon(int width, int height) {
+		return Type.getIcon(width,height);
+	}
+
+}

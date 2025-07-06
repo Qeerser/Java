@@ -1,0 +1,10 @@
+
+public class WoodPickaxe extends Pickaxe {
+
+	public WoodPickaxe(int damage, int plus) {
+		super(damage, plus,"WoodPickaxe",1);
+		this.setMineral(Minerals.Iron);
+		
+	}
+	
+}

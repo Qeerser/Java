@@ -1,0 +1,14 @@
+import javafx.scene.image.ImageView;
+
+public interface BagItem {
+
+	Object getType();
+
+	int getAmount();
+
+	void setAmount(int i);
+
+	String getName();
+	
+	ImageView getIcon(int width, int height);
+}

@@ -1,0 +1,50 @@
+package Ztest;
+
+import java.util.*;
+
+public class aas {
+    // Mapping of reward types to their ranks
+    private static final Map<String, Integer> rewardRanks = new HashMap<>();
+
+    static {
+        // Initialize reward ranks for each type
+        rewardRanks.put("Gold", 1);     // Rank 1 rewards of type Gold
+        rewardRanks.put("Silver", 2);   // Rank 2 rewards of type Silver
+        rewardRanks.put("Bronze", 3);   // Rank 3 rewards of type Bronze
+        rewardRanks.put("Copper", 4);   // Rank 4 rewards of type Copper
+        rewardRanks.put("Iron", 5);     // Rank 5 rewards of type Iron
+    }
+
+    public static void main(String[] args) {
+        int stageLevel = 100; // Example stage level
+
+        List<String> rewards = dropRewards(stageLevel, 5);
+        System.out.println("Rewards: " + rewards);
+    }
+
+    private static List<String> dropRewards(int stageLevel, int numRewards) {
+        List<String> availableRewardTypes = new ArrayList<>(rewardRanks.keySet());
+        List<String> droppedRewards = new ArrayList<>();
+
+        Random random = new Random();
+        for (int i = 0; i < numRewards; i++) {
+            int rewardIndex = random.nextInt(availableRewardTypes.size());
+            String rewardType = availableRewardTypes.get(rewardIndex);
+            int rewardRank = rewardRanks.get(rewardType);
+
+            // Adjust the reward rank based on the stage level
+            int adjustedRewardRank = Math.min(rewardRank + stageLevel - 1, rewardRanks.size());
+
+            // Add the reward to the dropped rewards list
+            droppedRewards.add(rewardType + " (Rank " + adjustedRewardRank + ")");
+
+            // Remove the reward type if the maximum rank is reached
+            if (adjustedRewardRank >= rewardRanks.size()) {
+                availableRewardTypes.remove(rewardType);
+            }
+        }
+
+        return droppedRewards;
+    }
+}
+

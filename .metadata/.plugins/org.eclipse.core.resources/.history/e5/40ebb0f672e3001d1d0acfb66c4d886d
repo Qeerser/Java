@@ -1,0 +1,157 @@
+package Code;
+
+import java.util.ArrayList;
+
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+
+public class InventoryDisplay extends Application {
+    @Override
+    public void start(Stage stage) {
+        // Create an inventory with 25 items
+        Inventory inventory = new Inventory(25);
+
+//        Item item = new Item("Sword", 1, false, "sword.png");
+        
+        // Create a table view to display the items
+        TableView<Item> table = new TableView<>();
+        table.setPadding(new Insets(10));
+        table.setPrefSize(500, 500);
+
+        // Create columns for the table
+        TableColumn<Item, String> nameColumn = new TableColumn<>("Name");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        TableColumn<Item, Integer> quantityColumn = new TableColumn<>("Quantity");
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        TableColumn<Item, Boolean> stackableColumn = new TableColumn<>("Stackable");
+        stackableColumn.setCellValueFactory(new PropertyValueFactory<>("stackable"));
+        TableColumn<Item, ImageView> spriteColumn = new TableColumn<>("Sprite");
+        spriteColumn.setCellValueFactory(new PropertyValueFactory<>("spriteView"));
+
+        // Add the columns to the table
+        table.getColumns().add(nameColumn);
+        table.getColumns().add(quantityColumn);
+        table.getColumns().add(stackableColumn);
+        table.getColumns().add(spriteColumn);
+
+        // Add the items to the table
+        table.getItems().addAll(inventory.getItems());
+
+        // Create a border pane to hold the table
+        BorderPane root = new BorderPane();
+        root.setCenter(table);
+
+        // Create a scene and add it to the stage
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Inventory");
+        stage.show();
+    }
+    
+    public class Item {
+        private String name;
+        private int quantity;
+        private boolean stackable;
+        private Sprite sprite;
+
+        public Item(String name, int quantity, boolean stackable, String spriteFilename) {
+            this.name = name;
+            this.quantity = quantity;
+            this.stackable = stackable;
+            this.sprite = new Sprite(spriteFilename);
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        public boolean isStackable() {
+            return stackable;
+        }
+
+        public void setQuantity(int quantity) {
+            this.quantity = quantity;
+        }
+
+        public void incrementQuantity(int amount) {
+            if (stackable) {
+                quantity += amount;
+            } else {
+                System.out.println("This item is not stackable.");
+            }
+        }
+
+        public void decrementQuantity(int amount) {
+            if (stackable) {
+                quantity -= amount;
+            } else {
+                System.out.println("This item is not stackable.");
+            }
+        }
+
+        public ImageView getSpriteView() {
+            return sprite.getView();
+        }
+
+        @Override
+        public String toString() {
+            return name + " (x" + quantity + ")";
+        }
+
+        private class Sprite {
+            private ImageView view;
+
+            public Sprite(String filename) {
+                Image image = new Image(filename);
+                view = new ImageView(image);
+            }
+
+            public ImageView getView() {
+                return view;
+            }
+        }
+    }
+
+
+    public class Inventory {
+        private ArrayList<Item> items;
+
+        public Inventory(int i) {
+            items = new ArrayList<Item>();
+        }
+
+        public ArrayList<Item> getItems() {
+			
+			return this.items;
+		}
+
+		public void addItem(Item item) {
+            items.add(item);
+        }
+
+        public void removeItem(Item item) {
+            items.remove(item);
+        }
+
+        public void displayInventory() {
+            for (Item item : items) {
+                System.out.println(item);
+            }
+        }
+    }
+    public static void main(String[] args) {
+        launch(args);
+    }
+}

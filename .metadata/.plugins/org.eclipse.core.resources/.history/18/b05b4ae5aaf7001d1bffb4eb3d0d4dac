@@ -1,0 +1,33 @@
+package Ztest;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+public class aas extends Application {
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        // Load an image from the "res" folder
+        Image image = new Image(getClass().getResource("/res/picture/icon.png").toExternalForm());
+
+        // Create an ImageView to display the image
+        ImageView imageView = new ImageView(image);
+
+        // Create a StackPane as the root node
+        StackPane root = new StackPane(imageView);
+
+        // Create a Scene and set it on the Stage
+        Scene scene = new Scene(root, 400, 300);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Res Example");
+        primaryStage.show();
+    }
+}

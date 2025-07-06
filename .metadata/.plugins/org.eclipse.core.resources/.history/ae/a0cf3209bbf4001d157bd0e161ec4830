@@ -1,0 +1,61 @@
+import java.util.ArrayList;
+
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+public class GameUtil {
+	private static Player user ;
+	private static Stage game ;	
+	private static ArrayList<StackPane> itemSlot2 = new ArrayList<>();
+	private static ArrayList<StackPane> itemSlot = new ArrayList<>();
+	private static ArrayList<Stages> stages = new ArrayList<>();
+	
+	
+	public static void Upgrade() {
+		
+	}
+	
+	public static Player getUser() {
+		return user;
+	}
+	
+	public static Player setUser() {
+		return user;
+	}
+
+	public static void setUser(Player user) {
+		GameUtil.user = user;
+	}
+
+	public static Stage getGame() {
+		return game;
+	}
+
+	public static void setGame(Stage game) {
+		GameUtil.game = game;
+	}
+
+
+	public static ArrayList<StackPane> getItemSlot() {
+		return itemSlot;
+	}
+
+
+	public static void setItemSlot(ArrayList<StackPane> itemSlot) {
+		GameUtil.itemSlot = itemSlot;
+	}
+
+	public static ArrayList<Stages> getStages() {
+		return stages;
+	}
+
+	public static ArrayList<StackPane> getItemSlot2() {
+		return itemSlot2;
+	}
+
+	public static void setItemSlot2(ArrayList<StackPane> itemSlot2) {
+		GameUtil.itemSlot2 = itemSlot2;
+	}
+	
+
+}

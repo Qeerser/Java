@@ -1,0 +1,26 @@
+
+public class Stages {
+	private int level;
+	private boolean isClear = false;
+	
+	
+	
+	public void GameShow() {
+		
+	}
+	
+	
+	public boolean isClear() {
+		return isClear;
+	}
+	public void setClear(boolean isClear) {
+		this.isClear = isClear;
+	}
+	public StageMap getMap() {
+		return map;
+	}
+	public void setMap(StageMap map) {
+		this.map = map;
+	}
+	
+}

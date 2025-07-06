@@ -1,0 +1,64 @@
+package main;
+
+import java.util.ArrayList;
+import java.util.Objects;
+
+public class aas {
+    public static void main(String[] args) {
+        // Create ArrayList of objects with names and ages
+        ArrayList<Person> personList = new ArrayList<>();
+        personList.add(new Person("John", 25));
+        personList.add(new Person("Emily", 30));
+        personList.add(new Person("Michael", 28));
+
+        // Name to check
+        String nameToCheck = "Emily";
+
+        // Check if name exists in the ArrayList
+        boolean nameExists = personList.stream().anyMatch(person -> person.getName().equals(nameToCheck));
+
+        // Display result
+        if (nameExists) {
+            System.out.println("Name \"" + nameToCheck + "\" exists in the ArrayList.");
+        } else {
+            System.out.println("Name \"" + nameToCheck + "\" does not exist in the ArrayList.");
+        }
+    }
+}
+
+class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Person person = (Person) obj;
+        return Objects.equals(name, person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+}

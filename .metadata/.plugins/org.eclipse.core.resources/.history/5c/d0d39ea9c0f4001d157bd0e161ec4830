@@ -1,0 +1,47 @@
+import java.util.ArrayList;
+
+import javafx.scene.layout.StackPane;
+
+public class Bag {
+	private ArrayList<BagItem> allItem = new ArrayList<>();
+	private ArrayList<StackPane> itemSlot = new ArrayList<>();
+
+	public ArrayList<BagItem> getAllItem() {
+		return allItem;
+	}
+
+	public void setAllItem(ArrayList<BagItem> allItem) {
+		this.allItem = allItem;
+	}
+
+	public void addAllItem(ArrayList<BagItem> Item) {
+		for (BagItem i : Item) {
+			this.addItem(i);
+		}
+	}
+
+	public ArrayList<StackPane> getItemSlot() {
+		return itemSlot;
+	}
+
+	public void setItemSlot(ArrayList<StackPane> itemSlot) {
+		this.itemSlot = itemSlot;
+	}
+
+	public void addItem(BagItem i) {
+		for (BagItem j : this.allItem) {
+			if (j instanceof Reward)
+				((Reward) j).merge((Reward) i);
+		}
+		if (!(i instanceof Stackable) || !this.allItem.contains(i)) {
+			this.allItem.add(i);
+		}
+	}
+	
+	public int getAmountof(BagItem bi) {
+		Stackable o = new 
+		
+		
+		return o.getAmount();
+	}
+}

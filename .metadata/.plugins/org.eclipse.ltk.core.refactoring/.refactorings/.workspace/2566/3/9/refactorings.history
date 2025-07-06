@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 0 elements to &apos;2110215_Lab3_2022_2_6531303021_Kanpasit/src&apos;&#x0D;&#x0A;- Destination element: &apos;2110215_Lab3_2022_2_6531303021_Kanpasit/src&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation units" destination="=2110215_Lab3_2022_2_6531303021_Kanpasit/src" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1677660739644" units="0" version="1.0"/>
+</session>

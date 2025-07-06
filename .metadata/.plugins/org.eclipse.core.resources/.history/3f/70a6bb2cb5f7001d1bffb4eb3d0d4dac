@@ -1,0 +1,126 @@
+package Game.logic;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Random;
+
+import Entities.Bag;
+import Entities.Player;
+import Entities.Item;
+import Game.Scene.EnchantScene;
+import Game.Scene.Stages;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+public class GameUtil {
+	public static Player user = new Player();
+	public static Stage game ;	
+	public static ArrayList<Stages> stages = new ArrayList<>();
+	
+//	ArrayList<BagItem> allItem,ArrayList<Stages> stages
+	public static void saveGame() {
+		SaveData a = new SaveData();
+		a.allItem = user.getBag().getAllItem();
+		a.stages = stages;
+		
+    	try {
+			ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(Paths.get("res/save/game.save")));
+			oos.writeObject(a);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public static void loadGame() {
+		try {
+			ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(Paths.get("res/save/game.save")));
+			try {
+				SaveData a = (SaveData) ois.readObject();
+//				stages = a.stages;
+				user.getBag().setAllItem(a.allItem);
+
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			}
+			
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	
+	public static void Upgrade(Pickaxe p) {
+		Bag currentBag = user.getBag();
+		Item target = currentBag.getitem(p.getMineral().getDisplayName());
+		
+		if(target!= null && target.getAmount() >= Math.pow(2,p.getPlus())){
+	        Random random = new Random();
+	        double randomValue = random.nextDouble();
+	        currentBag.setAmountof((BagItem ) target,(int) (target.getAmount()-Math.pow(2,p.getPlus())));
+	        
+	        if (randomValue <= 1 /Math.pow(2,p.getPlus())){
+			p.addPlus();
+			((Text) EnchantScene.PlayerStatus.getChildren().get(7)).setText("Success");
+			System.out.println("");
+	        }
+	        else {
+	        p.downPlus();
+	        System.out.println("fail");
+	        ((Text) EnchantScene.PlayerStatus.getChildren().get(7)).setText("Fail");
+	        }
+	        if (p.addEnchantCount()) {
+	        	((Text) EnchantScene.PlayerStatus.getChildren().get(7)).setText("'Weapon Evolve'Now Base Plus : "+ p.getBasePlus());	
+	        }
+	        
+		}
+		
+	}
+	
+	public static Text newText(int size, String text) {
+		Text t = new Text(text);
+		t.setFont(Font.font("Pixel Operator", FontWeight.NORMAL, size));
+		return t;
+		
+		
+	}
+	
+	public static void sellItem(BagItem i) {
+		if (user.getBag().getAllItem().contains(i)) {
+			Bag currentBag = user.getBag();
+			if(i instanceof Stackable) {
+				Item target = currentBag.getitem(i.getName());
+				currentBag.setAmountof((BagItem ) target,(int) (target.getAmount()-1));
+			}
+			else {
+			user.getBag().getAllItem().remove(i);
+			}
+			user.setCoin(user.getCoin()+ i.getCost());
+		}
+	}
+	
+	public static void butItem(BagItem i) {
+		user.getBag().addItem(i);
+		user.setCoin(user.getCoin()- i.getCost());
+	}
+	
+	public static Text newTextButton(int size, String text) {
+		DropShadow ds = new DropShadow();
+		ds.setOffsetY(3.0f);
+		ds.setColor(Color.color(0.0f, 0.0f, 0.0f));
+		Text t = new Text(text);
+		t.setStyle("-fx-font-size: " + size +"; -fx-fill:  white;");
+		t.setFont(Font.font("Daydream", FontWeight.BOLD, size));
+		t.setOnMouseEntered(event -> t.setStyle("-fx-font-size: "+(size+2)+"; -fx-fill: lightgray;"));
+		t.setOnMouseExited(event -> t.setStyle("-fx-font-size: "+(size)+"; -fx-fill:  white;"));
+		t.setEffect(ds);
+		return t;
+	}
+}

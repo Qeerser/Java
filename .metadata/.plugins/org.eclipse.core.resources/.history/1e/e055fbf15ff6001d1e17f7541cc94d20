@@ -1,0 +1,99 @@
+package Game.logic;
+import java.util.Random;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+public enum Minerals {
+	Iron(11,"Iron", 	 70, 40, 25, 15, 70,"file:pic/iron.png",1000), 
+	Bronze(12,"Bronze",  20, 40, 30, 20, 20,"file:pic/bronze.png",10000), 
+	Silver(13,"Silver",   9, 15, 30, 45, 7,"file:pic/silver.png",100000), 
+	Gold(14,"Gold", 	  1, 5, 9, 15, 2,"file:pic/gold.png",1000000), 
+	Diamond(15,"Diamond", 0, 0, 1, 5, 1,"file:pic/diamond.png",10000000);
+
+	private String displayName;
+	private int randomRate0;
+	private int randomRate1;
+	private int randomRate2;
+	private int randomRate3;
+	private int randomRate4;
+	private ImageView icon;
+	private int id;
+	private int cost;
+
+	Minerals(int id ,String displayName, int randomRate0, int randomRate1, int randomRate2, int randomRate3, int randomRate4,String text,int cost) {
+		this.cost = cost;
+		this.id = id;
+		this.displayName = displayName;
+		this.randomRate0 = randomRate0;
+		this.randomRate1 = randomRate1;
+		this.randomRate2 = randomRate2;
+		this.randomRate3 = randomRate3;
+		this.randomRate4 = randomRate4;
+		
+		this.icon = new ImageView(new Image(text));
+	}
+
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public int getRandomRate(int stageGroup) {
+		switch (stageGroup) {
+		case 0: {
+			return randomRate0;
+		}
+		case 1: {
+			return randomRate1;
+		}
+		case 2: {
+			return randomRate2;
+		}
+		case 3: {
+			return randomRate3;
+		}
+		case 4: {
+			return randomRate4;
+		}
+		default:
+			return randomRate0;
+		}
+		
+	}
+
+	public static Minerals getRandom(int stageGroup) {
+		Random random = new Random();
+		int totalRates = 0;
+		
+		for (Minerals rank : values()) {
+			totalRates += rank.getRandomRate(stageGroup);
+		}
+		int randomValue = random.nextInt(totalRates);
+		int cumulativeRate = 0;
+		for (Minerals rank : values()) {
+			cumulativeRate += rank.getRandomRate(stageGroup);
+			if (randomValue < cumulativeRate) {
+				return rank;
+			}
+		}
+
+		// In case of unexpected scenarios, return a default rank
+		return Iron;
+	}
+
+	public ImageView getIcon(int width, int height) {
+		icon.setFitHeight(height);
+		icon.setFitWidth(width);
+		return icon;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public int getCost() {
+		return cost;
+	}
+
+	
+}

@@ -1,0 +1,7 @@
+package Entities.Weapon;
+
+import Game.logic.Pickaxe;
+
+public class GoldPickaxe extends Pickaxe {
+
+}

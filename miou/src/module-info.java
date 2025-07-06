@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author Kanpasit
+ *
+ */
+module miou {
+}

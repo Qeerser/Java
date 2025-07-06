@@ -1,0 +1,147 @@
+1684647744840	Delete element
+1684648669065	Copy file
+1684648706840	Copy file
+1684648821488	Rename resource 'bg.jpg'
+1684649623677	Copy files
+1684649661423	Copy file
+1684649673526	Copy file
+1684649764255	Copy files
+1684650158275	Copy file
+1684650258699	Copy file
+1684650279460	Rename resource 'bg.jpg'
+1684650540799	Delete element
+1684650559632	Rename package 'picture.entitiys'
+1684650593396	Delete element
+1684650595086	Delete element
+1684650605040	Delete elements
+1684650616073	Delete elements
+1684650634150	Delete element
+1684650668045	Rename resource 'bg2.png'
+1684650715135	Copy file
+1684650724056	Rename resource 'cf.gif'
+1684650748425	Delete element
+1684650750249	Delete element
+1684650766396	Delete element
+1684650784690	Copy file
+1684650788387	Delete element
+1684650804610	Move file
+1684650811002	Move file
+1684650812348	Move file
+1684650813821	Move file
+1684650815469	Move file
+1684650847500	Move file
+1684650850780	Move file
+1684650857652	Delete element
+1684650897452	Delete element
+1684650910134	Move file
+1684650916139	Move file
+1684651059023	Rename resource 'miner2.png'
+1684651198039	Copy file
+1684651447348	Delete element
+1684651449574	Delete element
+1684651518773	Copy file
+1684652180323	Delete element
+1684652242703	Delete element
+1684652246598	Delete element
+1684652367910	Delete element
+1684653132050	Move file
+1684653137101	Move file
+1684653140854	Delete element
+1684653903723	Rename type 'Reward'
+1684654435278	Delete element
+1684659759044	Rename method 'Upgrade'
+1684659780766	Rename method 'butItem'
+1684659826176	Rename type 'Minerals'
+1684659862407	Rename method 'getDisplayName'
+1684660106526	Rename field 'image'
+1684660197624	Rename method 'setImage'
+1684661501986	Rename local variable 'bagText'
+1684662117981	Rename local variable 't'
+1684662603234	Rename local variable 'last'
+1684662735385	Rename method 'map'
+1684662785667	Rename method 'update'
+1684663361658	Rename local variable 'stage'
+1684663383847	Rename local variable 's'
+1684663422461	Rename local variable 'pic'
+1684663449798	Rename local variable 'level'
+1684663763402	Rename field 's'
+1684663793306	Rename field 'Stones'
+1684663810512	Rename field 'Enemys'
+1684663826018	Rename field 'items'
+1684663934922	Delete element
+1684663937074	Delete element
+1684664483209	Rename local variable 'WallPaper'
+1684664503645	Rename local variable 't'
+1684664596567	Rename local variable 'rewardList'
+1684664654246	Rename local variable 'monster'
+1684670222658	Rename local variable 'action'
+1684670397119	Rename local variable 't'
+1684670599006	Rename local variable 'rewardList'
+1684670838915	Rename local variable 'dropItemList'
+1684670858765	Rename local variable 'dropItemList'
+1684670902898	Rename local variable 'name'
+1684670991469	Rename method 'playerInfoSetup'
+1684671044853	Rename method 'Show'
+1684671083303	Rename method 'clear'
+1684672866594	Rename method 'playerStatusSetup'
+1684672891830	Rename field 'PlayerStatus'
+1684672995817	Rename local variable 'head'
+1684673007133	Rename local variable 's'
+1684673038803	Rename local variable 'player'
+1684673047852	Rename local variable 'subhead'
+1684673630951	Rename field 'PlayerStatus'
+1684673660639	Rename method 'weaponStatSetup'
+1684674032075	Rename local variable 'player'
+1684674417266	Rename local variable 'player'
+1684674426160	Rename local variable 'ShopBox'
+1684674485046	Rename field 'PlayerStatus'
+1684674947997	Rename local variable 'slota'
+1684674976076	Rename local variable 'textContainer'
+1684675003226	Rename field 'sell'
+1684675010707	Rename field 'pickaxeSellbutton'
+1684675058179	Rename field 'a'
+1684675219594	Rename field 'cost'
+1684675322812	Rename method 'ShelfSlot'
+1684675333527	Rename method 'getBagSlot'
+1684676327799	Rename method 'Scene'
+1684676365889	Rename method 'Scene'
+1684676374203	Rename method 'Scene'
+1684676503819	Rename method 'mapScene'
+1684677016935	Delete element
+1684678461639	Move packages
+1684678466478	Move file
+1684678495308	Move package
+1684678496390	Move package
+1684678497986	Move package
+1684678499390	Move package
+1684678632604	Rename method 'update'
+1684678686946	Rename field 'shop'
+1684678698617	Rename field 'enchant'
+1684678710242	Rename method 'update'
+1684678723567	Rename field 'home'
+1684678729080	Rename field 'map'
+1684678781548	Rename field 'bag'
+1684678820774	Rename field 'itemSlot'
+1684678836074	Rename field 'itemSlot'
+1684678872333	Rename method 'update'
+1684678905984	Rename method 'newText'
+1684678917391	Rename method 'newTextButton'
+1684678954894	Delete element
+1684678995784	Rename field 'kill'
+1684679058148	Rename field 'level'
+1684679201091	Rename method 'Damage'
+1684679882017	Rename field 'coinob'
+1684679916234	Encapsulate field 'coinWithProperty'
+1684680007483	Rename field 'displayName'
+1684680025689	Rename field 'Name'
+1684681487478	Rename method 'getNumber'
+1684681495495	Rename method 'setNumber'
+1684681741228	Rename method 'setLevel'
+1684681809737	Rename field 'MaxHp'
+1684681817082	Rename field 'Hp'
+1684681828832	Rename field 'sprite'
+1684681857566	Rename local variable 'sto'
+1684681928382	Rename method 'getDrop'
+1684681985253	Rename method 'getSprite'
+1684681990504	Rename method 'getธcon'
+1684681999318	Rename method 'setSprite'
